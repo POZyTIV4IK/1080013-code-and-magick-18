@@ -6,6 +6,7 @@ var CLOUD_X = 110;
 var CLOUD_Y = 190;
 var CLOUD_TEXT = 260;
 var GAP = 50;
+var GAP_SECOND = 10;
 var BAR_HEIGHT = 150;
 var BAR_WIDTH = 40;
 
@@ -40,8 +41,12 @@ window.renderStatistics = function (ctx, names, times) {
     } else {
       ctx.fillStyle = 'hsl(227, 100%, ' + Math.random() * 100 + '%)';
     }
-    ctx.fillText(names[i], CLOUD_X + GAP * (i + 1) + BAR_WIDTH * i, CLOUD_TEXT);
-    ctx.fillText(Math.round(times[i]), CLOUD_X + GAP * (i + 1) + BAR_WIDTH * i, CLOUD_Y + GAP - 10 - ((BAR_HEIGHT * times[i]) / maxTime));
-    ctx.fillRect(CLOUD_X + GAP * (i + 1) + BAR_WIDTH * i, CLOUD_Y + GAP, BAR_WIDTH, -((BAR_HEIGHT * times[i]) / maxTime));
+    var A_CONST = GAP * (i + 1);
+    var B_CONST = ((BAR_HEIGHT * times[i]) / maxTime);
+    var C_CONST = BAR_WIDTH * i;
+    ctx.fillRect(CLOUD_X + A_CONST + C_CONST, CLOUD_Y + GAP, BAR_WIDTH, -B_CONST);
+    ctx.fillStyle = '#000';
+    ctx.fillText(names[i], CLOUD_X + A_CONST + C_CONST, CLOUD_TEXT);
+    ctx.fillText(Math.round(times[i]), CLOUD_X + A_CONST + C_CONST, CLOUD_Y + GAP - GAP_SECOND - B_CONST);
   }
 };
