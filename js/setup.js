@@ -2,19 +2,15 @@
 
 var userDialog = document.querySelector('.setup');
 var openSettingsWindow = document.querySelector('.setup-open');
-var ESC_KEYCODE = 27;
-var ENTER_KEYCODE = 13;
-userDialog.classList.remove('hidden');
-
 var closeSettingsWindow = userDialog.querySelector('.setup-close');
-var setupWizard = userDialog.querySelector('.setup-wizard');
+var setupWizardAppearance = userDialog.querySelector('.setup-wizard-appearance');
+var setupWizardCoatInput = setupWizardAppearance.querySelector('input[name="coat-color"]');
+var setupWizardEyesInput = setupWizardAppearance.querySelector('input[name="eyes-color"]');
 var setupFireball = userDialog.querySelector('.setup-fireball-wrap');
 var setupFireballInput = setupFireball.querySelector('input');
 var wizardCoat = userDialog.querySelector('.wizard-coat');
 var wizardEyes = userDialog.querySelector('.wizard-eyes');
 var userNameForm = userDialog.querySelector('.setup-user-name');
-userDialog.classList.remove('hidden');
-
 var similarListElement = userDialog.querySelector('.setup-similar-list');
 var similarWizardTemplate = document.querySelector('#similar-wizard-template')
     .content
@@ -24,6 +20,8 @@ var getRandomInteger = function (min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 };
 
+var ESC_KEYCODE = 27;
+var ENTER_KEYCODE = 13;
 var WIZARD_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
 var WIZARD_FAMILYNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
 var WIZARD_COAT = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
@@ -104,12 +102,16 @@ openSettingsWindow.addEventListener('click', function () {
   openPopup();
 });
 
-setupWizard.addEventListener('click', function () {
-  wizardCoat.style.fill = WIZARD_COAT[getRandomInteger(0, 6)];
+wizardCoat.addEventListener('click', function () {
+  var wizardCoatColorNow = WIZARD_COAT[getRandomInteger(0, 6)];
+  setupWizardCoatInput.value = wizardCoatColorNow;
+  wizardCoat.style.fill = wizardCoatColorNow;
 });
 
-setupWizard.addEventListener('click', function () {
-  wizardEyes.style.fill = WIZARD_EYES[getRandomInteger(0, 5)];
+wizardEyes.addEventListener('click', function () {
+  var wizardEyesColorNow = WIZARD_EYES[getRandomInteger(0, 5)];
+  setupWizardEyesInput.value = wizardEyesColorNow;
+  wizardEyes.style.fill = wizardEyesColorNow;
 });
 
 setupFireball.addEventListener('click', function () {
