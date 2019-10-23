@@ -4,7 +4,6 @@ var userDialog = document.querySelector('.setup');
 var openSettingsWindow = document.querySelector('.setup-open');
 var closeSettingsWindow = userDialog.querySelector('.setup-close');
 var setupWizardAppearance = userDialog.querySelector('.setup-wizard-appearance');
-var userNameInput = userDialog.querySelector('.setup-user-name');
 var setupWizardCoatInput = setupWizardAppearance.querySelector('input[name="coat-color"]');
 var setupWizardEyesInput = setupWizardAppearance.querySelector('input[name="eyes-color"]');
 var setupFireball = userDialog.querySelector('.setup-fireball-wrap');
