@@ -4,6 +4,7 @@ var userDialog = document.querySelector('.setup');
 var openSettingsWindow = document.querySelector('.setup-open');
 var closeSettingsWindow = userDialog.querySelector('.setup-close');
 var setupWizardAppearance = userDialog.querySelector('.setup-wizard-appearance');
+var userNameInput = userDialog.querySelector('.setup-user-name');
 var setupWizardCoatInput = setupWizardAppearance.querySelector('input[name="coat-color"]');
 var setupWizardEyesInput = setupWizardAppearance.querySelector('input[name="eyes-color"]');
 var setupFireball = userDialog.querySelector('.setup-fireball-wrap');
@@ -103,15 +104,18 @@ openSettingsWindow.addEventListener('click', function () {
 });
 
 var changeColor = function (item, itemData, itemInput) {
-  item.addEventListener('click', function () {
-    var colorNow = itemData[getRandomInteger(0, itemData.length)];
-    itemInput.value = colorNow;
-    item.style.fill = colorNow;
-  });
+  var colorNow = itemData[getRandomInteger(0, itemData.length)];
+  itemInput.value = colorNow;
+  item.style.fill = colorNow;
 };
 
-changeColor(wizardCoat, WIZARD_COAT, setupWizardCoatInput);
-changeColor(wizardEyes, WIZARD_EYES, setupWizardEyesInput);
+wizardCoat.addEventListener('click', function (evt) {
+  changeColor(evt.target, WIZARD_COAT, setupWizardCoatInput);
+});
+
+wizardEyes.addEventListener('click', function (evt) {
+  changeColor(evt.target, WIZARD_EYES, setupWizardEyesInput);
+});
 
 setupFireball.addEventListener('click', function () {
   var wizardFireballColorNow = WIZARD_FIREBALL[getRandomInteger(0, WIZARD_FIREBALL.length)];
