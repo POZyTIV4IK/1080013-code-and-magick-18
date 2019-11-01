@@ -1,23 +1,24 @@
 'use strict';
 
 (function () {
-  var closeSettingsWindow = window.userDialog.querySelector('.setup-close');
+  var userDialog = document.querySelector('.setup');
+  var closeSettingsWindow = userDialog.querySelector('.setup-close');
   var openSettingsWindow = document.querySelector('.setup-open');
-  var userNameForm = window.userDialog.querySelector('.setup-user-name');
-  var uploadIcon = window.userDialog.querySelector('.upload');
-  var startPosition = window.userDialog.offset;
+  var userNameForm = userDialog.querySelector('.setup-user-name');
+  var uploadIcon = userDialog.querySelector('.upload');
+  var startPosition = userDialog.offset;
   var ESC_KEYCODE = 27;
   var ENTER_KEYCODE = 13;
 
-  window.userDialog.querySelector('.setup-similar').classList.remove('hidden');
+  userDialog.querySelector('.setup-similar').classList.remove('hidden');
 
   var openPopup = function () {
-    window.userDialog.classList.remove('hidden');
+    userDialog.classList.remove('hidden');
   };
 
   var closePopup = function () {
-    window.userDialog.style = startPosition + 'px';
-    window.userDialog.classList.add('hidden');
+    userDialog.style = startPosition + 'px';
+    userDialog.classList.add('hidden');
   };
 
   closeSettingsWindow.addEventListener('click', function () {
@@ -73,8 +74,8 @@
         y: moveEvt.clientY
       };
 
-      window.userDialog.style.top = (window.userDialog.offsetTop - shift.y) + 'px';
-      window.userDialog.style.left = (window.userDialog.offsetLeft - shift.x) + 'px';
+      userDialog.style.top = (userDialog.offsetTop - shift.y) + 'px';
+      userDialog.style.left = (userDialog.offsetLeft - shift.x) + 'px';
     };
 
     var onMouseUp = function (upEvt) {
