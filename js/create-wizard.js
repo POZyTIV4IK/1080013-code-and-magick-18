@@ -7,21 +7,6 @@
       .content
       .querySelector('.setup-similar-item');
 
-  var getRandomInteger = function (min, max) {
-    return Math.floor(Math.random() * (max - min)) + min;
-  };
-
-  var WIZARD_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
-  var WIZARD_COAT = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
-  var WIZARD_EYES = ['black', 'red', 'blue', 'yellow', 'green'];
-  var WIZARD_FAMILYNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
-
-  window.createWizard = {
-    WIZARD_COAT: WIZARD_COAT,
-    WIZARD_EYES: WIZARD_EYES,
-    getRandomInteger: getRandomInteger
-  };
-
   var createElement = function (wizards) {
     var wizardElement = similarWizardTemplate.cloneNode(true);
     wizardElement.querySelector('.setup-similar-label').textContent = wizards.name;
@@ -36,9 +21,9 @@
     var wizard = {};
     for (var i = 0; i < 4; i++) {
       wizard[i] = {
-        name: WIZARD_NAMES[getRandomInteger(0, 8)] + ' ' + WIZARD_FAMILYNAMES[getRandomInteger(0, 8)],
-        coatColor: WIZARD_COAT[getRandomInteger(0, 6)],
-        eyesColor: WIZARD_EYES[getRandomInteger(0, 5)]
+        name: window.utils.WIZARD_NAMES[window.utils.getRandomInteger(0, 8)] + ' ' + window.utils.WIZARD_FAMILYNAMES[window.utils.getRandomInteger(0, 8)],
+        coatColor: window.utils.WIZARD_COAT[window.utils.getRandomInteger(0, 6)],
+        eyesColor: window.utils.WIZARD_EYES[window.utils.getRandomInteger(0, 5)]
       };
       wizardCluster.push(wizard[i]);
     }

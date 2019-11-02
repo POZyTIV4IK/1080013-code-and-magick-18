@@ -7,8 +7,6 @@
   var userNameForm = userDialog.querySelector('.setup-user-name');
   var uploadIcon = userDialog.querySelector('.upload');
   var startPosition = userDialog.offset;
-  var ESC_KEYCODE = 27;
-  var ENTER_KEYCODE = 13;
 
   userDialog.querySelector('.setup-similar').classList.remove('hidden');
 
@@ -26,14 +24,14 @@
   });
 
   closeSettingsWindow.addEventListener('keydown', function (evt) {
-    if (evt.keyCode === ENTER_KEYCODE) {
+    if (evt.keyCode === window.utils.ENTER_KEYCODE) {
       closePopup();
     }
   });
 
   document.addEventListener('keydown', function (evt) {
     if (userNameForm !== document.activeElement) {
-      if (evt.keyCode === ESC_KEYCODE) {
+      if (evt.keyCode === window.utils.ESC_KEYCODE) {
         closePopup();
       }
     }
@@ -41,7 +39,7 @@
 
 
   openSettingsWindow.addEventListener('keydown', function (evt) {
-    if (evt.keyCode === ENTER_KEYCODE) {
+    if (evt.keyCode === window.utils.ENTER_KEYCODE) {
       openPopup();
     }
   });
