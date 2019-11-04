@@ -2,6 +2,7 @@
 
 (function () {
   var userDialog = document.querySelector('.setup');
+  var form = userDialog.querySelector('.setup-wizard-form');
   var closeSettingsWindow = userDialog.querySelector('.setup-close');
   var openSettingsWindow = document.querySelector('.setup-open');
   var userNameForm = userDialog.querySelector('.setup-user-name');
@@ -95,5 +96,21 @@
     document.addEventListener('mouseup', onMouseUp);
   });
 
+  var errorHandler = function (errorMessage) {
+    var node = document.createElement('div');
+    node.style = 'z-index: 100; margin: 0 auto; text-align: center; background-color: red;';
+    node.style.position = 'absolute';
+    node.style.left = 0;
+    node.style.right = 0;
+    node.style.fontSize = '30px';
+    node.textContent = errorMessage;
+    document.body.insertAdjacentElement('afterbegin', node);
+  };
 
+  form.addEventListener('submit', function (evt) {
+    evt.preventDefault();
+    window.backend.save(new FormData(form), function () {
+      userDialog.classList.add('hidden');
+    }, errorHandler);
+  });
 })();
