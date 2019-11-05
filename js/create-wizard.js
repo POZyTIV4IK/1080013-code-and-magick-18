@@ -2,6 +2,7 @@
 
 (function () {
   var userDialog = document.querySelector('.setup');
+  var error = document.querySelector('.error');
   var similarListElement = userDialog.querySelector('.setup-similar-list');
   var similarWizardTemplate = document.querySelector('#similar-wizard-template')
       .content
@@ -21,17 +22,8 @@
       fragment.appendChild(createElement(wizards[i]));
     }
     similarListElement.appendChild(fragment);
-  };
-  var errorHandler = function (errorMessage) {
-    var node = document.createElement('div');
-    node.style = 'z-index: 100; margin: 0 auto; text-align: center; background-color: red;';
-    node.style.position = 'absolute';
-    node.style.left = 0;
-    node.style.right = 0;
-    node.style.fontSize = '30px';
-    node.textContent = errorMessage;
-    document.body.insertAdjacentElement('afterbegin', node);
+    error.classList.add('hidden');
   };
 
-  window.backend.load(successHandler, errorHandler);
+  window.backend.load(successHandler, window.utils.errorHandler);
 })();
