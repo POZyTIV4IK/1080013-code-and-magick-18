@@ -2,6 +2,8 @@
 
 (function () {
   var userDialog = document.querySelector('.setup');
+  var error = document.querySelector('.error');
+  var setupWizardForm = userDialog.querySelector('.setup-wizard-form');
   var closeSettingsWindow = userDialog.querySelector('.setup-close');
   var openSettingsWindow = document.querySelector('.setup-open');
   var userNameForm = userDialog.querySelector('.setup-user-name');
@@ -95,5 +97,13 @@
     document.addEventListener('mouseup', onMouseUp);
   });
 
+  var submitSuccess = function () {
+    closePopup();
+    error.classList.add('hidden');
+  };
 
+  setupWizardForm.addEventListener('submit', function (evt) {
+    evt.preventDefault();
+    window.backend.save(new FormData(setupWizardForm), submitSuccess, window.utils.errorHandler);
+  });
 })();
