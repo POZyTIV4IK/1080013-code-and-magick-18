@@ -3,6 +3,7 @@
 (function () {
   var userDialog = document.querySelector('.setup');
   var error = document.querySelector('.error');
+  var similar = document.querySelector('.setup-similar');
   var similarListElement = userDialog.querySelector('.setup-similar-list');
   var similarWizardTemplate = document.querySelector('#similar-wizard-template')
       .content
@@ -16,14 +17,17 @@
     return wizardElement;
   };
 
-  var successHandler = function (wizards) {
-    var fragment = document.createDocumentFragment();
-    for (var i = 0; i < 4; i++) {
-      fragment.appendChild(createElement(wizards[i]));
+  var render = function (wizards) {
+    var takeNumber = wizards.length > 4 ? 4 : wizards.length;
+    similarListElement.innerHTML = '';
+    for (var i = 0; i < takeNumber; i++) {
+      similarListElement.appendChild(createElement(wizards[i]));
     }
-    similarListElement.appendChild(fragment);
+    similar.classList.remove('hidden');
     error.classList.add('hidden');
   };
 
-  window.backend.load(successHandler, window.utils.errorHandler);
+  window.createWizard = {
+    render: render
+  };
 })();
