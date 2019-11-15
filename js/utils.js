@@ -1,12 +1,31 @@
 'use strict';
 
 (function () {
+  var DEBOUNCE_INTERVAL = 500;
+  var debounce = function (cb) {
+    var lastTimeout = null;
+    return function () {
+      var parameters = arguments;
+      if (lastTimeout) {
+        window.clearTimeout(lastTimeout);
+      }
+      lastTimeout = window.setTimeout(function () {
+        cb.apply(null, parameters);
+      }, DEBOUNCE_INTERVAL);
+    };
+  };
   var getRandomInteger = function (min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
   };
+  var hideElement = function (item) {
+    item.classList.add('hidden');
+  };
+  var showElement = function (item) {
+    item.classList.remove('hidden');
+  };
   var errorHandler = function (errorMessage) {
     var error = document.querySelector('.error');
-    error.classList.remove('hidden');
+    showElement(error);
     error.textContent = errorMessage;
     document.body.insertAdjacentElement('afterbegin', error);
   };
@@ -19,6 +38,9 @@
     ESC_KEYCODE: 27,
     ENTER_KEYCODE: 13,
     getRandomInteger: getRandomInteger,
-    errorHandler: errorHandler
+    errorHandler: errorHandler,
+    debounce: debounce,
+    showElement: showElement,
+    hideElement: hideElement
   };
 })();

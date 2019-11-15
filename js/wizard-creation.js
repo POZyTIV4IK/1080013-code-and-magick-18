@@ -1,8 +1,11 @@
 'use strict';
 
 (function () {
+  var WIZARDS_QUANTITY = 4;
+
   var userDialog = document.querySelector('.setup');
   var error = document.querySelector('.error');
+  var similar = document.querySelector('.setup-similar');
   var similarListElement = userDialog.querySelector('.setup-similar-list');
   var similarWizardTemplate = document.querySelector('#similar-wizard-template')
       .content
@@ -16,14 +19,17 @@
     return wizardElement;
   };
 
-  var successHandler = function (wizards) {
-    var fragment = document.createDocumentFragment();
-    for (var i = 0; i < 4; i++) {
-      fragment.appendChild(createElement(wizards[i]));
+  var render = function (wizards) {
+    var selectedNumber = wizards.length > WIZARDS_QUANTITY ? WIZARDS_QUANTITY : wizards.length;
+    similarListElement.innerHTML = '';
+    for (var i = 0; i < selectedNumber; i++) {
+      similarListElement.appendChild(createElement(wizards[i]));
     }
-    similarListElement.appendChild(fragment);
-    error.classList.add('hidden');
+    window.utils.showElement(similar);
+    window.utils.hideElement(error);
   };
 
-  window.backend.load(successHandler, window.utils.errorHandler);
+  window.wizardCreation = {
+    render: render
+  };
 })();
