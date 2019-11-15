@@ -1,6 +1,8 @@
 'use strict';
 
 (function () {
+  var WIZARDS_QUANTITY = 4;
+
   var userDialog = document.querySelector('.setup');
   var error = document.querySelector('.error');
   var similar = document.querySelector('.setup-similar');
@@ -18,16 +20,16 @@
   };
 
   var render = function (wizards) {
-    var takeNumber = wizards.length > 4 ? 4 : wizards.length;
+    var selectedNumber = wizards.length > WIZARDS_QUANTITY ? WIZARDS_QUANTITY : wizards.length;
     similarListElement.innerHTML = '';
-    for (var i = 0; i < takeNumber; i++) {
+    for (var i = 0; i < selectedNumber; i++) {
       similarListElement.appendChild(createElement(wizards[i]));
     }
-    similar.classList.remove('hidden');
-    error.classList.add('hidden');
+    window.utils.showElement(similar);
+    window.utils.hideElement(error);
   };
 
-  window.createWizard = {
+  window.wizardCreation = {
     render: render
   };
 })();

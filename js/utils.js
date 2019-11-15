@@ -17,9 +17,15 @@
   var getRandomInteger = function (min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
   };
+  var hideElement = function (item) {
+    item.classList.add('hidden');
+  };
+  var showElement = function (item) {
+    item.classList.remove('hidden');
+  };
   var errorHandler = function (errorMessage) {
     var error = document.querySelector('.error');
-    error.classList.remove('hidden');
+    showElement(error);
     error.textContent = errorMessage;
     document.body.insertAdjacentElement('afterbegin', error);
   };
@@ -33,6 +39,8 @@
     ENTER_KEYCODE: 13,
     getRandomInteger: getRandomInteger,
     errorHandler: errorHandler,
-    debounce: debounce
+    debounce: debounce,
+    showElement: showElement,
+    hideElement: hideElement
   };
 })();

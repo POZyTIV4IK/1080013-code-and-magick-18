@@ -10,15 +10,15 @@
   var uploadIcon = userDialog.querySelector('.upload');
   var startPosition = userDialog.offset;
 
-  userDialog.querySelector('.setup-similar').classList.remove('hidden');
+  window.utils.showElement(userDialog.querySelector('.setup-similar'));
 
   var openPopup = function () {
-    userDialog.classList.remove('hidden');
+    window.utils.showElement(userDialog);
   };
 
   var closePopup = function () {
     userDialog.style = startPosition + 'px';
-    userDialog.classList.add('hidden');
+    window.utils.hideElement(userDialog);
   };
 
   closeSettingsWindow.addEventListener('click', function () {
@@ -99,7 +99,7 @@
 
   var submitSuccess = function () {
     closePopup();
-    error.classList.add('hidden');
+    window.utils.hideElement(error);
   };
 
   setupWizardForm.addEventListener('submit', function (evt) {
